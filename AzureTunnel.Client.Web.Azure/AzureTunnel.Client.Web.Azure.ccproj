@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>1.6</ProductVersion>
+    <ProjectGuid>{e9b437e3-0085-49cb-ae95-c27bf86ab9a1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AzureTunnel.Client.Web.Azure</RootNamespace>
+    <AssemblyName>AzureTunnel.Client.Web.Azure</AssemblyName>
+    <StartDevelopmentStorage>True</StartDevelopmentStorage>
+    <Name>AzureTunnel.Client.Web.Azure</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- Items for the project -->
+  <ItemGroup>
+    <ServiceDefinition Include="ServiceDefinition.csdef" />
+    <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AzureTunnel.Client.Web\AzureTunnel.Client.Web.csproj">
+      <Name>AzureTunnel.Client.Web</Name>
+      <Project>{258a8fd3-9797-4376-a406-d0b607acb9c0}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>AzureTunnel.Client.Web</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Profiles" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\AzureTunnelProduction.azurePubxml" />
+  </ItemGroup>
+  <!-- Import the target files for this project template -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\1.6\</CloudExtensionsDir>
+  </PropertyGroup>
+  <Import Project="$(CloudExtensionsDir)Microsoft.WindowsAzure.targets" />
+</Project>
